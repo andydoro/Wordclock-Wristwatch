@@ -28,6 +28,8 @@ INTERACTING WITH WATCH:
 #include <avr/power.h>
 #include <Wire.h>
 #include <RTClib.h>
+#include "DST_RTC.h"
+
 #include <Adafruit_GFX.h>
 #include <Watch.h>
 
@@ -88,6 +90,8 @@ uint8_t    mode      = MODE_WORDCLOCK,   // start on wordclock mode
 boolean    h24       = false; // 24-hour display mode
 uint16_t   fps       = 100;
 
+DST_RTC DST; // DST object
+
 // Do you live in a country or territory that observes Daylight Saving Time? 
 // https://en.wikipedia.org/wiki/Daylight_saving_time_by_country
 // Use 1 if you observe DST, 0 if you don't. This is programmed for DST in the US / Canada. If your territory's DST operates differently, 
@@ -101,21 +105,21 @@ void setup() {
   //DateTime now = RTC.now();
 
   // If clock is unset, set it to compile time and jump to time-setting mode
+
   if (! RTC.isrunning()) {
     Serial.println("RTC is NOT running!");
     // following line sets the RTC to the date & time this sketch was compiled
     RTC.adjust(DateTime(__DATE__, __TIME__));
     // DST? If we're in it, let's subtract an hour from the RTC time to keep our DST calculation correct. This gives us
     // Standard Time which our DST check will add an hour back to if we're in DST.
-    DateTime theTime = RTC.now();
-    if (OBSERVE_DST == 1) {
-      if (checkDst() == true) { // check whether we're in DST right now. If we are, subtract an hour.
-        theTime = theTime.unixtime() - 3600;
-      }
+    DateTime standardTime = RTC.now();
+    if (DST.checkDST(standardTime) == true) { // check whether we're in DST right now. If we are, subtract an hour.
+      standardTime = standardTime.unixtime() - 3600;
     }
-    RTC.adjust(theTime);
-    //mode = MODE_SET;
+    RTC.adjust(standardTime);
+    mode = MODE_SET;
   }
+  
   watch.begin();
 
   // On powerup and following initialization, watch is immediately put

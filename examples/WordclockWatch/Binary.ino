@@ -7,7 +7,7 @@
 #define BIT_SET  255
 
 void mode_binary(uint8_t action) {
-  DateTime theTime = calculateTime(); // takes into account DST
+  DateTime theTime = DST.calculateTime(RTC.now()); // takes into account DST
   uint8_t  h, x, bit, b_set, b_clear, depth;
   uint16_t t;
 

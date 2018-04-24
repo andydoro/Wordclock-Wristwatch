@@ -2,7 +2,8 @@
 void displayTime(void) {
 
   // get time from the RTC
-  DateTime theTime = calculateTime(); // takes into account DST
+  //DateTime theTime = calculateTime(); // takes into account DST
+  DateTime theTime = DST.calculateTime(RTC.now());
   theTime = theTime.unixtime() + 150;  // add 2.5 minutes to give better five minute estimates.
 
   //DateTime theTime;

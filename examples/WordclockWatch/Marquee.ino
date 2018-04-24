@@ -185,7 +185,8 @@ void mode_marquee(uint8_t action) {
     }
 
     // Load time/date digits depending on current submode:
-    theTime = calculateTime(); // takes into account DST
+    //theTime = calculateTime(); // takes into account DST
+    theTime = DST.calculateTime(RTC.now());
     len = 0;
     if(marqueeSubmode == MARQUEE_SUBMODE_TIME) {
       i = theTime.hour(); // 0-23
