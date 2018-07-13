@@ -9,7 +9,7 @@ After downloading, rename folder to 'Watch' and install in Arduino Libraries fol
 
 This version also adds automatic daylight saving time adjustment for the US and Canada!
 
-Requires Adafruit_GFX, RTClib and [DST_RTC](https://github.com/andydoro/DST_RTC) libraries.
+Requires [Adafruit_GFX](https://github.com/adafruit/Adafruit-GFX-Library), [RTClib](https://github.com/adafruit/RTClib) and [DST_RTC](https://github.com/andydoro/DST_RTC) libraries.
 
 Thanks Dano for vector file, lasercut and 3D print work!
 
