@@ -22,6 +22,6 @@ Requires:
 * [RTClib](https://github.com/adafruit/RTClib) 
 * [DST_RTC](https://github.com/andydoro/DST_RTC)
 
-Thanks Dano for vector file, lasercut and 3D print work!
+Thanks [Dano](https://github.com/danowall) for vector file, lasercut and 3D print work!
 
 
