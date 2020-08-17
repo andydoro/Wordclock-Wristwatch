@@ -98,6 +98,10 @@ DST_RTC DST; // DST object
 // you'll need to modify the code in the calcTheTime() function to make this work properly.
 #define OBSERVE_DST 1
 
+// Define US or EU rules for DST comment out as required. More countries could be added with different rules in DST_RTC.cpp
+const char rulesDST[] = "US"; // US DST rules
+// const char rulesDST[] = "EU";   // EU DST rules
+
 void setup() {
   Wire.begin();
   RTC.begin();
