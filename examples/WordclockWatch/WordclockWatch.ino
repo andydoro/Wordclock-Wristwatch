@@ -90,17 +90,13 @@ uint8_t    mode      = MODE_WORDCLOCK,   // start on wordclock mode
 boolean    h24       = false; // 24-hour display mode
 uint16_t   fps       = 100;
 
-DST_RTC DST; // DST object
+DST_RTC DST(0); // DST object
 
 // Do you live in a country or territory that observes Daylight Saving Time? 
 // https://en.wikipedia.org/wiki/Daylight_saving_time_by_country
 // Use 1 if you observe DST, 0 if you don't. This is programmed for DST in the US / Canada. If your territory's DST operates differently, 
 // you'll need to modify the code in the calcTheTime() function to make this work properly.
 #define OBSERVE_DST 1
-
-// Define US or EU rules for DST comment out as required. More countries could be added with different rules in DST_RTC.cpp
-const char rulesDST[] = "US"; // US DST rules
-// const char rulesDST[] = "EU";   // EU DST rules
 
 void setup() {
   Wire.begin();
